@@ -1,0 +1,50 @@
+#hourly-weather-section {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    white-space: nowrap;
+    list-style-type: none;
+
+    &::-webkit-scrollbar {
+      width: 0 !important;
+      display: none;
+    }
+
+    li {
+      cursor: pointer;
+    }
+  }
+
+  #hourly-weather {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 1rem;
+    margin: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0 !important;
+      display: none;
+    }
+    .hourly-weather-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 1rem;
+      height: 170px;
+      padding: 0.5rem;
+    }
+
+    .time {
+      font-family: "Teko", sans-serif;
+      font-size: 1.5rem;
+    }
+  }
+}

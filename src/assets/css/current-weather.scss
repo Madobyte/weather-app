@@ -1,0 +1,47 @@
+#current-weather {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  img {
+    flex-basis: 300px;
+    width: 300px;
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+
+  #weather-description {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  #current-temperature {
+    flex: 100%;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  #wind-speed {
+    flex-basis: 100px;
+    text-align: center;
+    margin-left: auto;
+
+    &::before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f72e";
+      margin: 10px;
+    }
+  }
+
+  #humidity {
+    flex-basis: 100px;
+    text-align: center;
+    margin-right: auto;
+
+    &::before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f043";
+      margin: 10px;
+    }
+  }
+}

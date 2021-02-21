@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  height: 75px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-family: "Pacifico", cursive;
+
+  #logo {
+    margin: 10px;
+    height: 55px;
+    width: 55px;
+  }
+}
