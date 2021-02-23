@@ -1,5 +1,17 @@
 import "./assets/css/app.scss";
-import { weather } from "./assets/js/app";
+import { changeTheme } from "./assets/js/changeTheme";
+import { createDates } from "./assets/js/createDates";
+import { createWeatherCards } from "./assets/js/createWeatherCards";
+import { currentWeather } from "./assets/js/currentWeather";
+import { hourlyWeather } from "./assets/js/hourlyWeather";
+import { openSearch } from "./assets/js/openSearch";
+import { openTab } from "./assets/js/openTab";
 
-const today = weather.getWeatherData();
-today.then((res) => console.log(res[0].main));
+changeTheme();
+createWeatherCards();
+createDates();
+openTab();
+openSearch();
+
+currentWeather;
+hourlyWeather;

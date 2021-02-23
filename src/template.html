@@ -6,10 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>weatherApp</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/solid.min.css"/>
-
-
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 </head>
 
 <body>
@@ -26,7 +23,7 @@
     </section>
 
     <section id="current-weather">
-      <img src="./assets/images/current-weather-icon.svg" alt="#" id="current-weather-icon">
+      <img src="./assets/images/01d.svg" alt="#" id="current-weather-icon">
       <p id="weather-description">light intensity drizzle</p>
       <h2 id="current-temperature">28.04 °C</h2>
       <p id="wind-speed">2.8 m/s</p>
@@ -34,37 +31,8 @@
     </section>
 
     <section id="hourly-weather-section">
-      <div id="dates-container">
-        <ul id="dates">
-          <li class="date">Today, 18 Sep</li>
-          <li class="date">Mon, 19 Sep</li>
-          <li class="date">Tue, 20 Sep</li>
-          <li class="date">Wed, 21 Sep</li>
-          <li class="date">Thurs, 22 Sep</li>
-        </ul>
-      </div>
-      <div id="hourly-weather">
-        <div class="hourly-weather-cards">
-          <p class="time">9:00AM</p>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="#" class="hourly-weather-icon">
-          <p class="hourly-weather-temperature">28 °C</p>
-        </div>
-        <div class="hourly-weather-cards">
-          <p class="time">10:00AM</p>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="#" class="hourly-weather-icon">
-          <p class="hourly-weather-temperature">28 °C</p>
-        </div>
-        <div class="hourly-weather-cards">
-          <p class="time">11:00AM</p>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="#" class="hourly-weather-icon">
-          <p class="hourly-weather-temperature">28 °C</p>
-        </div>
-        <div class="hourly-weather-cards">
-          <p class="time">12:00AM</p>
-          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="#" class="hourly-weather-icon">
-          <p class="hourly-weather-temperature">28 °C</p>
-        </div>
-      </div>
+      <div id="dates-container"></div>
+      <div id="hourly-weather"></div>
     </section>
   </div>
 

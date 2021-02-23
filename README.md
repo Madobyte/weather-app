@@ -24,3 +24,9 @@ I touched APIs again. Rehashed how to use `Promise`s,`async`s, `await`s, and `js
 
 **02/21/2021 - Initial Commit**
 Created a mockup of the whole app. Data were hard-coded.
+
+**02/22/2021**
+Rendered the data from the Weather API.
+
+**02/23/2021**
+Converted the rendered time to local time from UTC. Added theme depending on the time of day. The search and `geolocation` features do not work yet.

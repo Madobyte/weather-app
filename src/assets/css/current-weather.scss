@@ -22,24 +22,26 @@
   }
 
   #wind-speed {
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     margin-left: auto;
 
     &::before {
       font-family: "Font Awesome 5 Free";
+      font-weight: 900;
       content: "\f72e";
       margin: 10px;
     }
   }
 
   #humidity {
-    flex-basis: 100px;
+    flex-basis: 120px;
     text-align: center;
     margin-right: auto;
 
     &::before {
       font-family: "Font Awesome 5 Free";
+      font-weight: 900;
       content: "\f043";
       margin: 10px;
     }
