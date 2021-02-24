@@ -1,15 +1,21 @@
+import { weather } from "./weather";
+
 export default function getLocation() {
+  weather.getDataFromCity(); //sets the data even if the access to location is denied
+
   if (navigator.geolocation) {
-    console.log(navigator.geolocation.getCurrentPosition(success, fail));
+    navigator.geolocation.getCurrentPosition(success, fail);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    console.log("1");
   }
 }
 
 function success(position) {
-  return position;
+  localStorage.setItem("position", position);
+  console.log("Location access granted.");
+  weather.getDataFromLocation(position);
 }
 
-function fail(position) {
-  return position;
+function fail() {
+  console.log("Location access was denied.");
 }

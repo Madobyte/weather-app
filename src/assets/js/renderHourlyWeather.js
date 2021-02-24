@@ -42,6 +42,7 @@ export const renderHourlyWeather = (array) => {
   const cards = document.querySelectorAll(".hourly-weather-card");
   for (let k = 0; k <= cards.length - 1; k++) {
     const currentCard = cards[k];
+    while (currentCard.firstChild) currentCard.firstChild.remove(); //removes previous data
     cardsArray[k].forEach((data) => {
       currentCard.appendChild(data);
     });
