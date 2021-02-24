@@ -10,7 +10,9 @@
   - Nesting
 - Javascript
   - webpack
+  - localStorage API
   - OpenWeatherMap's Weather API
+  - Geolocation API
 
 ## Dev's Reflection
 
@@ -30,3 +32,8 @@ Rendered the data from the Weather API.
 
 **02/23/2021**
 Converted the rendered time to local time from UTC. Added theme depending on the time of day. The search and `geolocation` features do not work yet.
+
+**02/24/2021**
+Refactoring the flow of the code. I realized that it's better to get the data from the API _on window load_, _after location prompt_, or _by user request_ via the search bar. Used `localStorage` to store fetched data.
+
+Finally, got the geolocation API to work.
