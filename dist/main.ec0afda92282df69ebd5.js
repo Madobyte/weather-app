@@ -186,17 +186,7 @@ eval("module.exports = __webpack_require__.p + \"472495177a8f3ad803ff.svg\";\n\n
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"apiKey\": () => (/* binding */ apiKey)\n/* harmony export */ });\nconst apiKey = '8c401ea9946317bcec247ff3c0216973';\n\n//# sourceURL=webpack://weather-app/./src/assets/js/apiKey.js?");
-
-/***/ }),
-
-/***/ "./src/assets/js/app.js":
-/*!******************************!*\
-  !*** ./src/assets/js/app.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"weather\": () => (/* binding */ weather)\n/* harmony export */ });\n/* harmony import */ var _apiKey__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./apiKey */ \"./src/assets/js/apiKey.js\");\n/* harmony import */ var _getLocation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getLocation */ \"./src/assets/js/getLocation.js\");\n\n\n\nconst weather = (function () {\n  //window.addEventListener(\"load\", getLocation);\n  async function getData(city = \"Manila\") {\n    let response = await fetch(\n      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${_apiKey__WEBPACK_IMPORTED_MODULE_0__.apiKey}&units=metric`\n    );\n    let json = await response.json();\n    return json;\n  }\n\n  async function getCityData(city) {\n    let data = await getData(city);\n    return data.city;\n  }\n\n  async function getWeatherData(city) {\n    let data = await getData(city);\n    return data.list;\n  }\n\n  return {\n    getCityData,\n    getWeatherData,\n  };\n})();\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"apiKey\": () => (/* binding */ apiKey)\n/* harmony export */ });\nconst apiKey = \"8c401ea9946317bcec247ff3c0216973\";\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/apiKey.js?");
 
 /***/ }),
 
@@ -240,16 +230,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/assets/js/currentWeather.js":
-/*!*****************************************!*\
-  !*** ./src/assets/js/currentWeather.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"currentWeather\": () => (/* binding */ currentWeather)\n/* harmony export */ });\n/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app */ \"./src/assets/js/app.js\");\n/* harmony import */ var _determineIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./determineIcon */ \"./src/assets/js/determineIcon.js\");\n\n\n\nconst currentWeather = _app__WEBPACK_IMPORTED_MODULE_0__.weather.getWeatherData().then((res) => {\n  const main = res[0].weather[0].main;\n  const description = res[0].weather[0].description;\n  const temp = res[0].main.temp;\n  const windSpeed = Math.round(res[0].wind.speed * 3.6 * 100) / 100; //Multiply by 3.6 to convert m/s to kph\n  const humidity = res[0].main.humidity;\n\n  const currentWeather = document.getElementById(\"current-weather\");\n  const currentIcon = document.getElementById(\"current-weather-icon\");\n  const icon = document.createElement(\"img\");\n  const source = (0,_determineIcon__WEBPACK_IMPORTED_MODULE_1__.determineIcon)(main, description);\n  icon.src = source;\n  currentWeather.insertBefore(icon, currentWeather.firstChild);\n  currentIcon.remove();\n  const weatherDescription = document.getElementById(\"weather-description\");\n  weatherDescription.innerText = description;\n  const currentTemperature = document.getElementById(\"current-temperature\");\n  currentTemperature.innerText = `${temp} °C`;\n  const currentWindSpeed = document.getElementById(\"wind-speed\");\n  currentWindSpeed.innerText = `${windSpeed} kph`;\n  const currentHumidity = document.getElementById(\"humidity\");\n  currentHumidity.innerText = `${humidity}%`;\n});\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/currentWeather.js?");
-
-/***/ }),
-
 /***/ "./src/assets/js/determineIcon.js":
 /*!****************************************!*\
   !*** ./src/assets/js/determineIcon.js ***!
@@ -260,23 +240,33 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/assets/js/getCurrentWeather.js":
+/*!********************************************!*\
+  !*** ./src/assets/js/getCurrentWeather.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getCurrentWeather\": () => (/* binding */ getCurrentWeather)\n/* harmony export */ });\n/* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather */ \"./src/assets/js/weather.js\");\n/* harmony import */ var _determineIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./determineIcon */ \"./src/assets/js/determineIcon.js\");\n\n\n\nconst getCurrentWeather = () => {\n  const data = Object.values(JSON.parse(localStorage.getItem(\"weather\")));\n  const city = JSON.parse(localStorage.getItem(\"city\")).name;\n  const main = data[0].weather[0].main;\n  const description = data[0].weather[0].description;\n  const temp = data[0].main.temp;\n  const windSpeed = Math.round(data[0].wind.speed * 3.6 * 100) / 100; //Multiply by 3.6 to convert m/s to kph\n  const humidity = data[0].main.humidity;\n\n  const currentLocation = document.getElementById(\"current-location\");\n  currentLocation.innerText = city;\n  const currentWeather = document.getElementById(\"current-weather\");\n  const currentIcon = document.getElementById(\"current-weather-icon\");\n  const icon = document.createElement(\"img\");\n  icon.id = \"current-weather-icon\";\n  const source = (0,_determineIcon__WEBPACK_IMPORTED_MODULE_1__.determineIcon)(main, description);\n  icon.src = source;\n  currentWeather.insertBefore(icon, currentWeather.firstChild);\n  currentIcon.remove();\n  const weatherDescription = document.getElementById(\"weather-description\");\n  weatherDescription.innerText = description;\n  const currentTemperature = document.getElementById(\"current-temperature\");\n  currentTemperature.innerText = `${temp} °C`;\n  const currentWindSpeed = document.getElementById(\"wind-speed\");\n  currentWindSpeed.innerText = `${windSpeed} kph`;\n  const currentHumidity = document.getElementById(\"humidity\");\n  currentHumidity.innerText = `${humidity}%`;\n};\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/getCurrentWeather.js?");
+
+/***/ }),
+
+/***/ "./src/assets/js/getHourlyWeather.js":
+/*!*******************************************!*\
+  !*** ./src/assets/js/getHourlyWeather.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getHourlyWeather\": () => (/* binding */ getHourlyWeather)\n/* harmony export */ });\n/* harmony import */ var _renderDates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./renderDates */ \"./src/assets/js/renderDates.js\");\n/* harmony import */ var _renderHourlyWeather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderHourlyWeather */ \"./src/assets/js/renderHourlyWeather.js\");\n/* harmony import */ var _splitToChunks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splitToChunks */ \"./src/assets/js/splitToChunks.js\");\n\n\n\n\nconst getHourlyWeather = () => {\n  const data = JSON.parse(localStorage.getItem(\"weather\"));\n  const chunkedArray = (0,_splitToChunks__WEBPACK_IMPORTED_MODULE_2__.splitToChunks)(Object.values(data));\n  (0,_renderDates__WEBPACK_IMPORTED_MODULE_0__.renderDate)(chunkedArray);\n  (0,_renderHourlyWeather__WEBPACK_IMPORTED_MODULE_1__.renderHourlyWeather)(chunkedArray);\n};\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/getHourlyWeather.js?");
+
+/***/ }),
+
 /***/ "./src/assets/js/getLocation.js":
 /*!**************************************!*\
   !*** ./src/assets/js/getLocation.js ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getLocation)\n/* harmony export */ });\nfunction getLocation() {\n  if (navigator.geolocation) {\n    console.log(navigator.geolocation.getCurrentPosition(success, fail));\n  } else {\n    x.innerHTML = \"Geolocation is not supported by this browser.\";\n  }\n}\n\nfunction success(position) {\n  return position;\n}\n\nfunction fail(position) {\n  return position;\n}\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/getLocation.js?");
-
-/***/ }),
-
-/***/ "./src/assets/js/hourlyWeather.js":
-/*!****************************************!*\
-  !*** ./src/assets/js/hourlyWeather.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"hourlyWeather\": () => (/* binding */ hourlyWeather)\n/* harmony export */ });\n/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app */ \"./src/assets/js/app.js\");\n/* harmony import */ var _renderDates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderDates */ \"./src/assets/js/renderDates.js\");\n/* harmony import */ var _renderHourlyWeather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./renderHourlyWeather */ \"./src/assets/js/renderHourlyWeather.js\");\n/* harmony import */ var _splitToChunks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splitToChunks */ \"./src/assets/js/splitToChunks.js\");\n\n\n\n\n\nconst hourlyWeather = _app__WEBPACK_IMPORTED_MODULE_0__.weather.getWeatherData().then((res) => {\n  const chunkedArray = (0,_splitToChunks__WEBPACK_IMPORTED_MODULE_3__.splitToChunks)(res);\n  (0,_renderDates__WEBPACK_IMPORTED_MODULE_1__.renderDate)(chunkedArray);\n  (0,_renderHourlyWeather__WEBPACK_IMPORTED_MODULE_2__.renderHourlyWeather)(chunkedArray);\n});\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/hourlyWeather.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getLocation)\n/* harmony export */ });\n/* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather */ \"./src/assets/js/weather.js\");\n\n\nfunction getLocation() {\n  _weather__WEBPACK_IMPORTED_MODULE_0__.weather.getDataFromCity(); //sets the data even if the access to location is denied\n\n  if (navigator.geolocation) {\n    navigator.geolocation.getCurrentPosition(success, fail);\n  } else {\n    console.log(\"1\");\n  }\n}\n\nfunction success(position) {\n  console.log(\"Location access granted.\");\n  _weather__WEBPACK_IMPORTED_MODULE_0__.weather.getDataFromLocation(position);\n}\n\nfunction fail() {\n  console.log(\"Location access was denied.\");\n}\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/getLocation.js?");
 
 /***/ }),
 
@@ -330,13 +320,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/assets/js/weather.js":
+/*!**********************************!*\
+  !*** ./src/assets/js/weather.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"weather\": () => (/* binding */ weather)\n/* harmony export */ });\n/* harmony import */ var _apiKey__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./apiKey */ \"./src/assets/js/apiKey.js\");\n/* harmony import */ var _getCurrentWeather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getCurrentWeather */ \"./src/assets/js/getCurrentWeather.js\");\n/* harmony import */ var _getHourlyWeather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getHourlyWeather */ \"./src/assets/js/getHourlyWeather.js\");\n\n\n\n\nconst weather = (function () {\n  async function getDataFromCity(city = \"Manila\") {\n    const response = await fetch(\n      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${_apiKey__WEBPACK_IMPORTED_MODULE_0__.apiKey}&units=metric`\n    );\n    const json = await response.json();\n    localStorage.setItem(\"city\", JSON.stringify(json.city));\n    localStorage.setItem(\"weather\", JSON.stringify({ ...json.list }));\n    (0,_getCurrentWeather__WEBPACK_IMPORTED_MODULE_1__.getCurrentWeather)();\n    (0,_getHourlyWeather__WEBPACK_IMPORTED_MODULE_2__.getHourlyWeather)();\n  }\n\n  async function getDataFromLocation(position) {\n    const lat = position.coords.latitude;\n    const lon = position.coords.longitude;\n    const response = await fetch(\n      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${_apiKey__WEBPACK_IMPORTED_MODULE_0__.apiKey}&units=metric`\n    );\n    const json = await response.json();\n    localStorage.setItem(\"city\", JSON.stringify(json.city));\n    localStorage.setItem(\"weather\", JSON.stringify({ ...json.list }));\n    (0,_getCurrentWeather__WEBPACK_IMPORTED_MODULE_1__.getCurrentWeather)();\n    (0,_getHourlyWeather__WEBPACK_IMPORTED_MODULE_2__.getHourlyWeather)();\n  }\n\n  return { getDataFromCity, getDataFromLocation };\n})();\n\n\n//# sourceURL=webpack://weather-app/./src/assets/js/weather.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/app.scss */ \"./src/assets/css/app.scss\");\n/* harmony import */ var _assets_js_changeTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/js/changeTheme */ \"./src/assets/js/changeTheme.js\");\n/* harmony import */ var _assets_js_createDates__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/js/createDates */ \"./src/assets/js/createDates.js\");\n/* harmony import */ var _assets_js_createWeatherCards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/js/createWeatherCards */ \"./src/assets/js/createWeatherCards.js\");\n/* harmony import */ var _assets_js_currentWeather__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/js/currentWeather */ \"./src/assets/js/currentWeather.js\");\n/* harmony import */ var _assets_js_hourlyWeather__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/js/hourlyWeather */ \"./src/assets/js/hourlyWeather.js\");\n/* harmony import */ var _assets_js_openSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/js/openSearch */ \"./src/assets/js/openSearch.js\");\n/* harmony import */ var _assets_js_openTab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./assets/js/openTab */ \"./src/assets/js/openTab.js\");\n\n\n\n\n\n\n\n\n\n(0,_assets_js_changeTheme__WEBPACK_IMPORTED_MODULE_1__.changeTheme)();\n(0,_assets_js_createWeatherCards__WEBPACK_IMPORTED_MODULE_3__.createWeatherCards)();\n(0,_assets_js_createDates__WEBPACK_IMPORTED_MODULE_2__.createDates)();\n(0,_assets_js_openTab__WEBPACK_IMPORTED_MODULE_7__.openTab)();\n(0,_assets_js_openSearch__WEBPACK_IMPORTED_MODULE_6__.openSearch)();\n\n_assets_js_currentWeather__WEBPACK_IMPORTED_MODULE_4__.currentWeather;\n_assets_js_hourlyWeather__WEBPACK_IMPORTED_MODULE_5__.hourlyWeather;\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/app.scss */ \"./src/assets/css/app.scss\");\n/* harmony import */ var _assets_js_weather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/js/weather */ \"./src/assets/js/weather.js\");\n/* harmony import */ var _assets_js_changeTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/js/changeTheme */ \"./src/assets/js/changeTheme.js\");\n/* harmony import */ var _assets_js_createDates__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/js/createDates */ \"./src/assets/js/createDates.js\");\n/* harmony import */ var _assets_js_createWeatherCards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/js/createWeatherCards */ \"./src/assets/js/createWeatherCards.js\");\n/* harmony import */ var _assets_js_getCurrentWeather__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/js/getCurrentWeather */ \"./src/assets/js/getCurrentWeather.js\");\n/* harmony import */ var _assets_js_getHourlyWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/js/getHourlyWeather */ \"./src/assets/js/getHourlyWeather.js\");\n/* harmony import */ var _assets_js_openSearch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./assets/js/openSearch */ \"./src/assets/js/openSearch.js\");\n/* harmony import */ var _assets_js_openTab__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./assets/js/openTab */ \"./src/assets/js/openTab.js\");\n/* harmony import */ var _assets_js_getLocation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/js/getLocation */ \"./src/assets/js/getLocation.js\");\n\n\n\n\n\n\n\n\n\n\n\n(0,_assets_js_changeTheme__WEBPACK_IMPORTED_MODULE_2__.changeTheme)();\n(0,_assets_js_createWeatherCards__WEBPACK_IMPORTED_MODULE_4__.createWeatherCards)();\n(0,_assets_js_createDates__WEBPACK_IMPORTED_MODULE_3__.createDates)();\n(0,_assets_js_openTab__WEBPACK_IMPORTED_MODULE_8__.openTab)();\n(0,_assets_js_openSearch__WEBPACK_IMPORTED_MODULE_7__.openSearch)();\n\nwindow.addEventListener(\"load\", _assets_js_getLocation__WEBPACK_IMPORTED_MODULE_9__.default);\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 
