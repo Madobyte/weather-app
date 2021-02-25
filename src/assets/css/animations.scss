@@ -1,0 +1,21 @@
+@keyframes dropdown {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 36px;
+    opacity: 1;
+  }
+}
+
+@keyframes remove {
+  from {
+    top: 36px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

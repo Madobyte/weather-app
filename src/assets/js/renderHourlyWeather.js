@@ -30,10 +30,12 @@ export const renderHourlyWeather = (array) => {
       weatherIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
       card.push(weatherIcon);
 
+      const units = localStorage.getItem("units");
       const temperature = Math.round(forecast.main.temp * 10) / 10;
       const pTemperature = document.createElement("p");
       pTemperature.classList.add("hourly-weather-temperature");
-      pTemperature.innerText = `${temperature} °C`;
+      if (units === "metric") pTemperature.innerText = `${temperature} °C`;
+      else pTemperature.innerText = `${temperature} °F`;
       card.push(pTemperature);
       cardsArray.push(card);
     }

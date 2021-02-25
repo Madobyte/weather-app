@@ -6,12 +6,14 @@
 @import "current-weather";
 @import "hourly-weather";
 @import "footer";
+@import "switch";
 @import "media-queries";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 0;
 }
 
 body {

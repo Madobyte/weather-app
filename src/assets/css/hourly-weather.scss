@@ -7,6 +7,8 @@
     overflow-x: scroll;
     scrollbar-width: none;
     white-space: nowrap;
+    cursor: url(https://ssl.gstatic.com/ui/v1/icons/mail/images/2/openhand.cur),
+      default !important; /* cursor: grab; does not work on Chrome. */
 
     &::-webkit-scrollbar {
       width: 0 !important;
@@ -39,6 +41,7 @@
       display: grid;
       grid-template-columns: repeat(9, auto);
       gap: 1rem;
+      position: relative;
     }
 
     .hourly-weather-card {
@@ -50,6 +53,8 @@
       height: 170px;
       width: 120px;
       padding: 0.5rem;
+      cursor: url(https://ssl.gstatic.com/ui/v1/icons/mail/images/2/openhand.cur),
+        default !important; /* cursor: grab; does not work on Chrome. */
     }
 
     .time {

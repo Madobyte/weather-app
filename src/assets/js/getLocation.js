@@ -3,11 +3,8 @@ import { weather } from "./weather";
 export default function getLocation() {
   weather.getDataFromCity(); //sets the data even if the access to location is denied
 
-  if (navigator.geolocation) {
+  if (navigator.geolocation)
     navigator.geolocation.getCurrentPosition(success, fail);
-  } else {
-    console.log("1");
-  }
 }
 
 function success(position) {

@@ -37,3 +37,8 @@ Converted the rendered time to local time from UTC. Added theme depending on the
 Refactoring the flow of the code. I realized that it's better to get the data from the API _on window load_, _after location prompt_, or _by user request_ via the search bar. Used `localStorage` to store fetched data.
 
 Finally, got the geolocation API to work.
+
+Added `dragEvent` for desktop users.
+
+**02/25/2021**
+Added a toggle to change temperature units from metric to imperial and vice versa.

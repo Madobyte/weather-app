@@ -26,11 +26,13 @@ const showContent = (e) => {
 
   tabContent.forEach((tab) => {
     tab.style.display = "none";
+    tab.classList.remove("active");
   });
 
   tab.classList.add("active");
 
   const hourlyWeather = document.getElementById(`${day}-cards`);
+  hourlyWeather.classList.add("active");
   hourlyWeather.scrollLeft = 0;
   hourlyWeather.style.display = "grid";
 };
