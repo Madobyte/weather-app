@@ -22,11 +22,11 @@ I touched APIs again. Rehashed how to use `Promise`s,`async`s, `await`s, and `js
 
 ## Features
 
-[x] Weather data from current device location using `Geolocation API`
-[x] Use of `localStorage` for offline use
-[x] Search the weather of a city
-[x] Toggle units from metrics to imperial and vice versa
-[x] Background color changes depending on time of day (light blue for morning, orange for afternoon, and navy blue for evenig)
+- [x] Weather data from current device location using `Geolocation API`
+- [x] Use of `localStorage` for offline use
+- [x] Search the weather of a city
+- [x] Toggle units from metrics to imperial and vice versa
+- [x] Background color changes depending on time of day (light blue for morning, orange for afternoon, and navy blue for evenig)
 
 ## Commits
 
